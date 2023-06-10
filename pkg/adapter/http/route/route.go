@@ -55,6 +55,7 @@ func (i *InitRoute) InitRouting(cfg *config.Config) (*echo.Echo, error) {
 			CookieSecure:   true,
 			CookieDomain:   cookieDomain,
 			CookieSameSite: http.SameSiteNoneMode,
+			// 特定のpahtは middleware 除外
 			Skipper: func(c echo.Context) bool {
 				if strings.Contains(c.Request().URL.Path, "/healthcheck") {
 					return true
